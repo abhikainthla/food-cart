@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Faq from './components/Faq';
-import Contact from './components/Contact';
+import Cart from './components/Cart';
 React.useLayoutEffect = React.useEffect; 
 
 const router = createBrowserRouter([
@@ -14,12 +14,12 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path:'/faq',
+    path:'/reviews',
     element:<Faq/>,
   },
   {
-    path: '/contact',
-    element:<Contact/>,
+    path: '/cart',
+    element:<Cart/>,
   }
 ])
 

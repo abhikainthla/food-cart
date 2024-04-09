@@ -11,10 +11,10 @@ function Navbar() {
                 <NavLink to="/" activeClassName='active'>Home</NavLink> 
                     </li>
                 <li>
-                <NavLink to="/faq" activeClassName='active'>Faq</NavLink> 
+                <NavLink to="/reviews" activeClassName='active'>Reviews</NavLink> 
                 </li>
                 <li>
-                <NavLink to="/contact" activeClassName='active'>Contact</NavLink> 
+                <NavLink to="/cart" activeClassName='active'>Cart</NavLink> 
                 </li>
             </ul>
         </div>

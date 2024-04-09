@@ -20,6 +20,7 @@
     line-height: 64px;  
     font-size: 32px;
     font-weight: 500;
+    text-align: center;
 }
 .navbar .logo-left {
     color: #ed272b;
@@ -31,6 +32,10 @@
     margin: 0;
 }
 
+.nav-links {
+    width: 25%;
+    text-align: center;
+}
 .nav-links ul {
     list-style-type: none;
     padding: 0;
@@ -53,6 +58,7 @@ ul li {
 .active {
     font-weight: bold; 
     color: #ed272b; 
+    text-decoration: underline;
 }
 
 ul li a {
@@ -65,7 +71,12 @@ ul li a:hover {
     color: #fa4a0c; 
 }
 
-/* Styles for the sign-up button */
+
+.nav-buttons{
+    width: 25%;
+    text-align: center;
+
+}
 .sign-up {
     background-color: transparent; 
     color: #fa4a0c;
