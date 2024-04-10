@@ -7,6 +7,7 @@ import { CiMenuKebab } from "react-icons/ci";
 import './Faq.css'
 import './Footer.css'
 import ReviewCards from './ReviewCards';
+import FaqCards from './FaqCards';
 function Faq() {
   const reviews = [
     {
@@ -91,6 +92,45 @@ function Faq() {
       image:"https://img.freepik.com/free-photo/portrait-happy-smiley-man_23-2149022624.jpg?w=900"
     }
   ];
+  const faqs = [
+    {
+      question: "How do I place an order?",
+      answer: "To place an order, simply open the app, browse through the menu, select the items you'd like to order, and proceed to checkout. Follow the prompts to provide delivery details and complete your order."
+    },
+    {
+      question: "What payment methods do you accept?",
+      answer: "We accept various payment methods including credit/debit cards, digital wallets (such as Apple Pay, Google Pay), and cash on delivery (where available). You can choose your preferred payment method during checkout."
+    },
+    {
+      question: "How can I track my order?",
+      answer: "Once your order is confirmed, you'll receive a confirmation message with an estimated delivery time. You can track the status of your order in real-time through the app. Additionally, you'll receive notifications at each stage of the delivery process."
+    },
+    {
+      question: "Can I customize my order?",
+      answer: "Yes, you can customize your order according to your preferences. Our app allows you to add special instructions or make modifications to your items before placing the order. Simply specify your requirements in the order notes section during checkout."
+    },
+    {
+      question: "What if I have food allergies or dietary restrictions?",
+      answer: "We take food allergies and dietary restrictions seriously. Our menu includes options for various dietary preferences such as vegetarian, vegan, gluten-free, etc. You can filter the menu based on your dietary requirements or reach out to our customer support team for assistance in selecting suitable options."
+    },
+    {
+      question: "Is there a minimum order requirement for delivery?",
+      answer: "The minimum order requirement for delivery may vary depending on your location and the restaurant you're ordering from. You can check the minimum order amount for each restaurant listed in the app before placing your order."
+    },
+    {
+      question: "What if I need to cancel my order?",
+      answer: "If you need to cancel your order, please do so as soon as possible before it is prepared for delivery. You can cancel the order directly from the app by navigating to your order history and selecting the cancel option. Please note that orders already in preparation cannot be canceled."
+    },
+    {
+      question: "How do I provide feedback or report an issue with my order?",
+      answer: "Your feedback is important to us! If you have any issues with your order or if you'd like to provide feedback, you can contact our customer support team through the app. We're here to assist you and ensure your experience is satisfactory."
+    },
+    {
+      question: "Do you offer contactless delivery?",
+      answer: "Yes, we offer contactless delivery options to ensure the safety of our customers and delivery partners. You can request contactless delivery during checkout, and our delivery partners will leave your order at your doorstep without direct contact."
+    },
+  ];
+  
   
   const [rating, setRating] = useState(1);
   const [text, setText] = useState('');
@@ -158,16 +198,18 @@ function Faq() {
   return (
     <div>
         <div><Navbar/></div>
+        
         <div className='reviews'>
+          <h2>Reviews</h2>
           <div>
           <h1 className='reviews-heading'>Reviews</h1>
           </div>
           <div className='rating'>
-            <span >Rating:<span className='rating-no'>{rating}</span><FaStar color='#ffff00' /></span>
+            <span >Rate us:<span className='rating-no'>{rating}</span><FaStar color='#ffff00' /></span>
             <br/> <input type='range' min={1} max={5} step={.1} value={rating} onChange={(e)=> setRating(e.target.value)} className="slider"/>
           </div>
             <div className='write-review'>
-            <MdReviews style={{width:"50px", height:"auto", color:"#fa4a0c"}} /> <textarea value={text} placeholder="Write Review" rows={8} cols={64} id="review" onChange={(e)=>setText(e.target.value)}/><button className="add-review" onClick={handleReview}>Add</button><br/>
+            <MdReviews style={{width:"50px", height:"auto", color:"#fa4a0c"}} /> <textarea value={text} placeholder="Write Review" rows={7} cols={49} id="review" onChange={(e)=>setText(e.target.value)}/><button className="add-review" onClick={handleReview}>Add</button><br/>
             </div>
             <div className='cards-container'>
               <div style={{alignSelf:"end"}} onClick={handleSorting}><CiMenuKebab color='#fff' style={{height:"25px", width:"auto"}} /></div>
@@ -181,6 +223,16 @@ function Faq() {
                 <ReviewCards key={item.id} review={item} />
               ))}
             </div>
+        </div>
+        <div className='faqs'>
+          <h2>FAQs</h2>
+          {
+            faqs.map((item, index)=>{
+              return (
+                <FaqCards key={index} question={item.question} answer={item.answer}/>
+              )
+            })
+          }
         </div>
         <div><Footer/></div>
     </div>

@@ -20,7 +20,7 @@ function Footer() {
         <div className='footer-legal'>
             <h2>Legal</h2>
             <ul>
-                <li>Tearm & Conditions</li>
+                <li>Terms & Conditions</li>
                 <li>Refund & Cancellation</li>
                 <li>Privacy Policy</li>
                 <li>Cookie Policy</li>

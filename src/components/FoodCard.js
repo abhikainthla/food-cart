@@ -29,7 +29,7 @@ function FoodCard(props) {
       </label>
       <div className="menu-bottom">
         <h2 className="food-name">{props.food.name}</h2>
-        <p className="food-price">Price: {props.food.price}/serving</p>
+        <p className="food-price">Price: ₹{props.food.price}/serving</p>
         <span>
           <CiDeliveryTruck color="#fa4a0c" /> Free Delivery
         </span>

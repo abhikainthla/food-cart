@@ -1,10 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "./Navbar.css";
+import { GiOldWagon } from "react-icons/gi";
+  
 function Navbar() {
   return (
     <div className='navbar'>
-        <div className='logo'><span className='logo-left'>Food</span><span className='logo-right'>Cart</span></div>
+        <div className='logo'><GiOldWagon color='#c82125' /><span className='logo-left'>Food</span><span className='logo-right'>Cart</span></div>
         <div className='nav-links'>
             <ul>
                 <li>
