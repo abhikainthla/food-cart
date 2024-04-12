@@ -34,7 +34,7 @@ function FoodCard(props) {
           <CiDeliveryTruck color="#fa4a0c" /> Free Delivery
         </span>
         <span>
-          <IoIosTimer color="red" /> 15-20 mins
+          <IoIosTimer color="red" /> 15-30 mins
         </span>
       </div>
       <div className="quantity-buttons">

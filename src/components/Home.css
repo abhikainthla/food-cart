@@ -14,18 +14,59 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    animation: slideIn 1s ease forwards;
 }
-.poster h1{
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.poster h1 {
     font-size: 68px;
     font-weight: 400;
     font-style: normal;
     font-family: "Courgette", cursive;
+    animation: fadeIn 1s ease forwards;
 }
-.poster-image{
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.poster-image {
     width: auto;
     height: 240px;
     border-radius: 5px;
     overflow: hidden;
+    animation: scaleIn 1s ease forwards;
+}
+
+.poster-image video{
+    width:320px;
+    height:240px;
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .poster button {
@@ -45,11 +86,26 @@
     box-shadow: 0 2px 4px rgba(237, 39,43, 1); 
     background-image: linear-gradient(-180deg,#ff8121,#ed272b);
     color: #fff;
+    animation: pulse 1s infinite;
 }
 
-.poster p{
-    font-size: large;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
+
+.poster p {
+    font-size: large;
+    animation: fadeIn 1s ease forwards;
+}
+
 
 .home-heading h1 {
     font-size: 24px;
@@ -80,44 +136,77 @@
 }
 
 /* food-items css */
-.food-items{
+.food-items {
     display: flex;
     justify-content: space-evenly;
     gap: .5rem;
     border-bottom: 2px solid #ccc;
-
+    animation: fadeIn 1s ease forwards;
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .items {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border-radius: 40% ;
+    border-radius: 40%;
     width: 100px;
     height: 130px;
-    margin: 0 ;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+    animation: bounceIn 1s ease forwards;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .items-img {
-    width: 100px; 
-    height: 100px; 
-    border-radius: 50%; 
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     overflow: hidden;
 }
-.items-img img{
+
+.items-img img {
     width: 100px;
     height: 100px;
 }
-
-
-
 
 .items-name h1 {
     font-size: 16px;
     font-weight: 500;
     margin: 0;
     text-align: center;
-
+    animation: slideIn 1s ease forwards;
 }
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .view-more-div {
     text-align: center; 
     margin-top: 20px; 
@@ -141,8 +230,55 @@
     background-color: #c82125; 
   }
   
+  .show-alert {
+    position: fixed;
+    top: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999; 
+}
+
+  .hide-alert{
+    display: none;
+  }
 
 /* food-menu css */
+.popular-food {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; 
+  }
+  
+  .sort-by {
+    border: 1px solid black;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .drop-down {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 0px;
+    border-radius: 5px;
+  }
+  
+  .sort-menu {
+    background-color: #ff7c18;
+    border-radius: 5px;
+    padding: 3px 6px;
+    position: absolute;
+    top: calc(75%); 
+    right: auto;
+    z-index: 9; 
+    box-shadow: 0 2px 4px rgba(255, 124, 24, 0.5);
+  }
+  
+  .remove-menu {
+    display: none;
+  }
+  
 
 .menu {
     display: flex;
@@ -271,3 +407,49 @@
     color: #fff;
   }
   
+
+  /* media querry */
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .poster h1{
+        font-size: 48px;
+    }
+  }
+
+  @media screen and (min-width: 425px) and (max-width: 767px){
+    .poster h1{
+        font-size: 24px;
+    }
+    .poster p{
+        font-size: 12px;
+    }
+    .poster{
+        flex-direction: column;
+        gap: 8px;
+        height: 100vh;
+    }
+    .poster button{
+        padding: 8px 16px;
+    }
+  }
+
+
+  @media screen and (min-width: 320px) and (max-width: 424px) {
+    .poster h1{
+        font-size: 24px;
+    }
+    .poster p{
+        font-size: 12px;
+    }
+    .poster{
+        flex-direction: column;
+        gap: 8px;
+        height: 100vh;
+    }
+    .poster button{
+        padding: 8px 16px;
+    }
+    .poster video {
+        width: 300px;
+    }
+  }

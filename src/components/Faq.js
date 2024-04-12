@@ -2,13 +2,66 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { MdReviews } from "react-icons/md";
-import { FaStar } from "react-icons/fa";
-import { CiMenuKebab } from "react-icons/ci";
+import { GrSort } from "react-icons/gr";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import ReactSimplyCarousel from "react-simply-carousel";
 import './Faq.css'
 import './Footer.css'
 import ReviewCards from './ReviewCards';
 import FaqCards from './FaqCards';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+import ReviewPics from './ReviewPics';
 function Faq() {
+  const labels = {
+    0.5: 'Po0r',
+    1: 'Bad',
+    1.5: 'Not Happy',
+    2: 'Ok',
+    2.5: 'Average',
+    3: 'Neutral',
+    3.5: 'Good',
+    4: 'Very Good',
+    4.5: 'Excellent',
+    5: 'Loved It',
+  };
+  
+
+  const images = [
+    {
+      image: "https://img.freepik.com/free-photo/indian-delicious-food-view_23-2148723502.jpg?t=st=1712932734~exp=1712936334~hmac=a73cd09bb2f42546f9a1920d0a7de5c3d1e2b87a3c166a659ec70442622b6f38&w=740"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/couple-enjoying-food-restaurant_23-2149269156.jpg?t=st=1712932832~exp=1712936432~hmac=d948ebc16dfb5b5a1069166ff4100c19954feee06ea976532c6011157ff00150&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/pizza-with-ham-mushrooms-olives_2829-7211.jpg?t=st=1712932928~exp=1712936528~hmac=c5028c44a029b12be696af0376d41e247be297e1e62e7d1b83c6f5a1d75a5324&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/korean-instant-noodle-tteokbokki-korean-spicy-sauce-ancient-food_1150-43006.jpg?t=st=1712933100~exp=1712936700~hmac=5c91f65e6970bc2eb1eed3279437c350bde6c080da7665994027ef3e510658d3&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/pasta-with-tomato-sauce-served-bowl_1220-7550.jpg?t=st=1712933288~exp=1712936888~hmac=1f605616f7a8368289540d1d6033f911ff7d36fa2dd3591c74a91753d08045c5&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/baked-salmon-fish-fillet-with-tomatoes-mushrooms-spices-diet-menu_2829-14461.jpg?t=st=1712933413~exp=1712937013~hmac=c1b8876cc7af9f6d145263982fcfd9c05d3d9e8df8c7e51df55612ddb53207a4&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/side-view-chicken-kebab-with-red-onion-greens-dried-barberry-pita_141793-4838.jpg?t=st=1712933511~exp=1712937111~hmac=80dffb3cfa7658c4edcf9e45d91b84fcbb699aee6aebfb8d49942ffb9b77b5a8&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/side-view-chicken-skewers-grilled-chicken-fillet-with-red-yellow-peppers-seasoning-sauce-sesame-seeds-plate_141793-4853.jpg?t=st=1712933605~exp=1712937205~hmac=98c4b63aa3115f4c73896dd6280868e644927305a6ab8208d86f17d17a7ff985&w=826"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/close-up-person-holding-plate-with-tacos_23-2148329171.jpg?t=st=1712933744~exp=1712937344~hmac=5f0fb621202c3ac42198b92ee94830ed6e2279b536340d77c7578416368d2b6e&w=740"
+    },
+    {
+      image: "https://img.freepik.com/free-photo/classic-cheesecake-with-strawberry-cherry-slices_140725-3241.jpg?t=st=1712933893~exp=1712937493~hmac=f62a057c2667e87056f6e12f1fbb8d7de2f6eb5e37a871fd4d43e51ca6dcfcf7&w=740"
+    }
+  ];
+  
+
   const reviews = [
     {
       id: 1,
@@ -90,7 +143,40 @@ function Faq() {
       comment: "Absolutely loved it! The food was exceptional, especially the desserts. I ordered their chocolate cake and it was heavenly. The delivery was also very smooth.",
       date: "2024-04-18",
       image:"https://img.freepik.com/free-photo/portrait-happy-smiley-man_23-2149022624.jpg?w=900"
-    }
+    },
+    {
+      id: 11,
+      user: "Apurva",
+      rating: 5,
+      comment: "Excellent service! The food arrived hot and on time. Definitely ordering again.",
+      date: "2024-04-01",
+      image: "https://img.freepik.com/free-photo/expressive-young-woman-posing-studio_176474-66741.jpg?t=st=1712917124~exp=1712920724~hmac=bd26f874cc0babfd494675d5d8606bf830c8a758097447b3c92b999627b0663f&w=900"
+
+  },
+  {
+      id: 12,
+      user: "Smith",
+      rating: 4,
+      comment: "Great variety of restaurants to choose from. The app is user-friendly and makes ordering food a breeze.",
+      date: "2024-03-28",
+      image: "https://img.freepik.com/free-photo/medium-shot-smiley-man-posing_23-2148920610.jpg?t=st=1712917175~exp=1712920775~hmac=9e289099ce4e414d1dde0b17a907aa16955f15f41ccd769cfd81c9aa95deca92&w=826"
+  },
+  {
+      id: 13,
+      user: "Alia",
+      rating: 3,
+      comment: "Decent service. However, the delivery was a bit late this time.",
+      date: "2024-03-20",
+      image: "https://img.freepik.com/free-photo/fashion-girl-walking-summer-city_1157-20297.jpg?t=st=1712917043~exp=1712920643~hmac=234da79983b02937042b797c89fbdcbda37ca34c4657bb4ba7eac276f1ee785f&w=900"
+  },
+  {
+      id: 14,
+      user: "Emily",
+      rating: 5,
+      comment: "Impressed with the customer support. They promptly resolved an issue I had with my order. Will continue using this app.",
+      date: "2024-03-15",
+      image: "https://img.freepik.com/free-photo/charming-black-haired-woman-with-happy-face-expression-posing-with-peace-sign-street_197531-6356.jpg?t=st=1712916851~exp=1712920451~hmac=3cb0addc2ef30df6f9d89a22cbf3cbcbb3968afb7ae8cf2782bb5201b3be7c16&w=900"
+  }
   ];
   const faqs = [
     {
@@ -131,11 +217,16 @@ function Faq() {
     },
   ];
   
-  
-  const [rating, setRating] = useState(1);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [value, setValue] = useState(2.5);
+  const [hover, setHover] = useState(-1)
   const [text, setText] = useState('');
   const [review, setReview] =  useState(reviews);
   const [isMenu, setMenu] = useState(false);
+  const [sortBy, setSortBy] = useState('Top Reviews');
+  function getLabelText(value) {
+    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+  }
   function handleReview() {
     const date = new Date();
     const year = date.getFullYear();
@@ -156,7 +247,7 @@ function Faq() {
       id: review[review.length - 1].id + 1,
       user: "You",
       comment: text,
-      rating: rating,
+      rating: value,
       date: `${year}-${month}-${day}`,
       image: "https://img.freepik.com/free-photo/user-profile-interface-sign-symbol-icon-3d-rendering_56104-1956.jpg?w=900",
     };
@@ -164,7 +255,7 @@ function Faq() {
     updatedReviews.unshift(newReview);
     setReview(updatedReviews);
     setText("");
-    setRating(1);
+    setValue(1);
     console.log(newReview);
   }
 
@@ -175,24 +266,29 @@ function Faq() {
     }else{
       setMenu(!isMenu);
     }
+
   }
   function handleTopReviews() {
     const sortedReviews = [...reviews].sort((a, b) => a.id - b.id);
     setReview(sortedReviews);
+    setSortBy('Top Reviews');
   }
   
   function handleMostRecent() {
     const sortedReviews = [...reviews].sort((a, b) => new Date(b.date) - new Date(a.date));
     setReview(sortedReviews);
+    setSortBy('Most Recent');
   }
   function handleHighToLow() {
     const sortedReviews = [...reviews].sort((a,b) => b.rating - a.rating);
     setReview(sortedReviews);
+    setSortBy('Rating High To Low')
   }
 
   function handleLowToHigh() {
     const sortedReviews = [...reviews].sort((a,b) => a.rating - b.rating);
     setReview(sortedReviews);
+    setSortBy('Rating Low To High')
   }
   
   return (
@@ -205,19 +301,99 @@ function Faq() {
           <h1 className='reviews-heading'>Reviews</h1>
           </div>
           <div className='rating'>
-            <span >Rate us:<span className='rating-no'>{rating}</span><FaStar color='#ffff00' /></span>
-            <br/> <input type='range' min={1} max={5} step={.1} value={rating} onChange={(e)=> setRating(e.target.value)} className="slider"/>
-          </div>
+          <Box
+      sx={{
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Rating
+        name="hover-feedback"
+        value={value}
+        precision={0.5}
+        getLabelText={getLabelText}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+      />
+      {value !== null && (
+        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+      )}
+    </Box>
+    </div>
             <div className='write-review'>
-            <MdReviews style={{width:"50px", height:"auto", color:"#fa4a0c"}} /> <textarea value={text} placeholder="Write Review" rows={7} cols={49} id="review" onChange={(e)=>setText(e.target.value)}/><button className="add-review" onClick={handleReview}>Add</button><br/>
+            <MdReviews style={{width:"50px", height:"auto", color:"#fa4a0c"}} /> <textarea value={text} placeholder="Write Review" id="review" onChange={(e)=>setText(e.target.value)}/><button className="add-review" onClick={handleReview}>Add</button><br/>
             </div>
+            <div className='pic-reviews'>
+              <h3>Images From Our Customers</h3>
+            <ReactSimplyCarousel
+            activeSlideIndex={activeSlideIndex}
+            onRequestChange={setActiveSlideIndex}
+            itemsToShow={1}
+            itemsToScroll={1}
+            forwardBtnProps={{
+              style: {
+                alignSelf: "center",
+                background: "#ed272b",
+                border: "none",
+                borderRadius: "50%",
+                color: "white",
+                cursor: "pointer",
+                fontSize: "20px",
+                height: 30,
+                lineHeight: 1,
+                textAlign: "center",
+                width: 30,
+              },
+              children: <span>{`>`}</span>,
+            }}
+            backwardBtnProps={{
+              style: {
+                alignSelf: "center",
+                background: "#ed272b",
+                border: "none",
+                borderRadius: "50%",
+                color: "white",
+                cursor: "pointer",
+                fontSize: "20px",
+                height: 30,
+                lineHeight: 1,
+                textAlign: "center",
+                width: 30,
+              },
+              children: <span>{`<`}</span>,
+            }}
+            responsiveProps={[
+              {
+                itemsToShow: 3,
+                itemsToScroll: 2,
+                minWidth: 768,
+              },
+            ]}
+            speed={300}
+            easing="linear"
+          >
+            {
+              images.map((item, index)=>{
+                return (<ReviewPics  key ={index} image={item.image}/>)
+              })
+            }
+          </ReactSimplyCarousel>
+            </div>
+            <div className='sorting-divs'>
             <div className='cards-container'>
-              <div style={{alignSelf:"end"}} onClick={handleSorting}><CiMenuKebab color='#fff' style={{height:"25px", width:"auto"}} /></div>
+              <div style={{alignSelf:"end", backgroundColor:"#fff", padding:"8px 16px"}} onClick={handleSorting}><GrSort /> {sortBy} <RiArrowDropDownLine /></div>
               <div className={isMenu ? 'sort-reviews' : 'remove-sort'}>
               <div style={{alignSelf:"end", backgroundColor:"#fff", width:"150px", padding:"2px 4px", margin:"4px 0", borderRadius:"5px", border:"1px solid #ccc", cursor:"pointer"}} onClick={handleTopReviews}><p>Top reviews</p></div>
               <div style={{alignSelf:"end", backgroundColor:"#fff", width:"150px", padding:"2px 4px", margin:"4px 0", borderRadius:"5px", border:"1px solid #ccc", cursor:"pointer"}} onClick={handleMostRecent}><p>Most recent</p></div>
               <div style={{alignSelf:"end", backgroundColor:"#fff", width:"150px", padding:"2px 4px", margin:"4px 0", borderRadius:"5px", border:"1px solid #ccc", cursor:"pointer"}} onClick={handleHighToLow}><p>Rating high to low</p></div>
               <div style={{alignSelf:"end", backgroundColor:"#fff", width:"150px", padding:"2px 4px", margin:"4px 0", borderRadius:"5px", border:"1px solid #ccc", cursor:"pointer"}} onClick={handleLowToHigh}><p>Rating low to high</p></div>
+              </div>
               </div>
               {review.map((item) => (
                 <ReviewCards key={item.id} review={item} />

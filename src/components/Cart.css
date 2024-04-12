@@ -7,6 +7,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center; 
+    margin-bottom: 12rem;
 }
 
 .show-cart{
@@ -99,7 +100,24 @@
     width: auto;
     cursor: pointer;
 }
+.notes{
+    display: flex;
+    color: #fff;
+}
+.no-notes{
+    display: none;
+}
 
+textarea {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    resize: none; 
+    width: 200px;
+    height: 100px;
+  }
 .total {
     border-radius: 10px;
     border: 2px solid #ccc;
@@ -118,7 +136,6 @@
 }
 
 .rupee-symbol{
-    color: #ed272b;
     font-size: 16px;
 }
 .cart-button .reset-button {
@@ -175,20 +192,44 @@
 
 
 .checkout-modal {
-    background-color: #ffffff;
+    color: #fff;
     position: absolute;
-    top: 150px;
-    width: 60%;
-    height: 100vh;
+    top: 70px;
+    width: 80%;
+    height: auto;
     padding: 16px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(-180deg,#ff8121,#ed272b);
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    animation: modalFadeIn 0.5s forwards;
 }
-.checkout-modal h1{
-    font-size: 22px;
-    font-weight: 500;
+
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(-50%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.checkout-modal.hiding {
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+    animation: modalFadeOut 0.5s forwards;
+}
+
+@keyframes modalFadeOut {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-50%);
+    }
 }
 
 .close-window {
@@ -198,7 +239,31 @@
     margin: 8px 16px;
     cursor: pointer;
     color: #ed272b;
+    transition: opacity 0.3s ease;
 }
+
+.close-window:hover {
+    opacity: 0.8;
+}
+
+
+.checkout-modal h1{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.checkout-page {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+}
+
+.checkout-animation video {
+    width: 320px;
+
+}
+
 
 .hide-checkout {
     display: none;
@@ -212,7 +277,6 @@
     width: 500px;
     color: #fff;
     padding: 16px 32px;
-    background-color: #fa4a0c;
     border-radius: 5px;
 }
 
@@ -234,6 +298,16 @@
     border-color: #fa4a0c;
   }
 
+  .address-details .small-input{
+    width: 45%;
+  }
+
+  .small-input-container{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+  }
+
   .checkout-payment{
     width: 80%;
     padding: 16px 32px;
@@ -245,15 +319,18 @@
   .checkout-payment h3{
     font-weight: 500;
   }
+  .checkout-payment hr{
+    width: 100%;
+  }
 
   .checkout-payment button{
-    background-color:  #ed272b;
+    background-color:  #fff;
     padding: 16px 32px;
     height: 48px;
     border: none;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: #ed272b;
     font-size: 14px;
     border-radius: 5px;
     margin: 16px 8px; 
@@ -262,6 +339,194 @@
   .checkout-payment button:hover {
     background-color: transparent;
     height: 48px;
-    border: 2px solid  #ed272b;
-    color: #ed272b;
+    border: 2px solid  #fff;
+    color: #fff;
+}
+
+.invoice {
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-action{
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-action input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+}
+.tax-span {
+    font-size: 10px;
+}
+
+/* media querry */
+@media screen and (min-width: 900px) and (max-width: 1100px) {
+    .address-details {
+        width: auto;
+    }
+
+    .checkout-modal {
+        height: auto;
+    }
+    .checkout-animation video {
+        width: 250px;
+    
+    }
+
+    .address-details{
+        width: 350px;
+    }
+    .small-input-container{
+        width: 350px;
+      }
+}
+
+@media screen and (min-width: 768px) and (max-width: 899px){
+    .checkout-modal{
+        width: 90%;
+    }
+    .checkout-animation video {
+        width: 200px;
+    
+    }
+
+    .address-details{
+        width: 300px;
+    }
+    .small-input-container{
+        width: 300px;
+      }
+}
+
+@media screen and (min-width: 425px) and (max-width: 767px){
+    .cart-empty img {
+        width: 300px;
+        height: auto;
+    }
+    textarea{
+        width: 150px;
+        
+    }
+    .cart{
+        margin-bottom: 15rem;
+    }
+    .checkout-modal{
+        width: 90%;
+    }
+    .checkout-page{
+        flex-direction: column;
+    }
+    .address-details{
+        width: 300px;
+    }
+    .small-input-container{
+        width: 300px;
+      }
+    .cart-image{
+        height: 100px;
+        width: 100px;
+    }
+    .cart-image img{
+        height: 100px;
+    }
+    .total{
+        width: 300px;
+    }
+
+    .cart-item{
+        width: 300px;
+    }
+    .address-details {
+        width: auto;
+    }
+    .checkout-modal {
+        height: auto;
+    }
+    .checkout-modal input{
+        font-size: 14px;
+    }
+ 
+}
+
+@media screen and (min-width: 320px) and (max-width: 424px){
+
+    .cart{
+        margin-bottom: 3rem;
+    }
+    .notes{
+        flex-direction: column;
+    }
+    .checkout-modal{
+        width: 90%;
+    }
+    .checkout-modal input{
+        font-size: 12px;
+    }
+    .checkout-animation video {
+        width: 200px;
+    
+    }
+    .checkout-page{
+        flex-direction: column;
+    }
+    .address-details{
+        width: 250px;
+    }
+    .small-input-container{
+        width: 250px;
+      }
+    .cart-empty img {
+        width: 300px;
+        height: auto;
+    }
+    .cart-image{
+        height: 80px;
+        width: 80px;
+    }
+    .cart-details h2{
+        font-size: 18px;
+    }
+    .cart-details span {
+        font-size: 14px;
+    }
+    .cart-quantity {
+        font-size: medium;
+    }
+    .cart-image img{
+        height: 80px;
+    }
+    .total{
+        width: 250px;
+        padding: 4px 8px;
+
+    }
+
+    .cart-item{
+        width: 250px;
+        padding: 4px 8px;
+        justify-content: center;
+        gap: 6px;
+    }
+    .address-details {
+        width: auto;
+    }
+    .checkout-modal {
+        height: auto;
+    }
+    .cart {
+        padding: 10px;
+    }
+
+    .cart-button .reset-button {
+        padding: 4px 8px;
+    }
+
+    .cart-button .proceed-payment{
+        padding: 4px 8px;
+    }
 }

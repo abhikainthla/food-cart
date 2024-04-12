@@ -45,17 +45,14 @@
   
 
 .rating {
-    margin-bottom: 20px;
     padding: 8px 16px;
+    height: 50px;
+    width: 250px;
   }
   
 
-  .rating span {
-    font-weight: 500;
-    font-size: 18px;
-    margin-right: 10px;
-    margin-bottom: 16px;
-  }
+
+
   .rating-no{
     font-weight: 600;
     margin:0 16px;
@@ -72,6 +69,7 @@
   .write-review {
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
   }
   
   textarea {
@@ -81,6 +79,8 @@
     border-radius: 5px;
     margin-right: 10px;
     resize: none; 
+    width: 400px;
+    height: 100px;
   }
   
   textarea:focus {
@@ -104,6 +104,26 @@
   .add-review:focus {
     outline: none;
   }
+
+  /* review pics css */
+  .pic-reviews {
+    border-radius: 5px;
+  }
+  .pic-reviews h3{
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .review-pics {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 0 8px;
+  }
+  .review-pics img{
+    height: 150px;
+    width: auto;
+  }
   /* Review container styles */
   .cards-container {
     display: flex;
@@ -112,20 +132,24 @@
     margin-top: 20px;
     background-color: #fa4a0c;
     border-radius: 5px;
+    position: relative; 
   }
+  
   .sort-reviews {
-    background-color: #fff;
-    align-self: flex-end;
+    background-color: #ff7c18;
     border-radius: 5px;
     padding: 3px 6px;
-    position: absolute;
-    top: 460px;
-    z-index: 9;
+    position: absolute; 
+    top: calc(100%); 
+    right: 0; 
+    z-index: 999; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  .remove-sort{
+  
+  .remove-sort {
     display: none;
   }
+  
 .review-cards {
     margin-bottom: 20px;
     width: 800px;
@@ -197,4 +221,45 @@
     width: auto;
     height: 50px;
 
+  }
+
+
+  /* media querry */
+  @media screen and (min-width: 768px) and (max-width: 1023px){
+    .review-cards {
+      width:600px;
+    }
+    .faqs {
+      width: 550px;
+    }
+  }
+
+  @media screen and (min-width: 425px) and (max-width: 767px){
+    .review-cards {
+      width: 300px;
+    }
+    .faqs {
+      width: 250px;
+    }
+    .write-review{
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 424px){
+    .review-cards {
+      width: 250px;
+      padding: 10px;
+    }
+    .faqs {
+      width: 250px;
+    }
+    .write-review{
+      flex-direction: column;
+      gap: 6px;
+    }
+    textarea {
+      width: 200px;
+      height: 50px;
+    }
   }

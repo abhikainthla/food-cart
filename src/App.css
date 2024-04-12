@@ -3,3 +3,12 @@ body {
   font-optical-sizing: auto;
 
 }
+
+.loading-screen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100vh;
+  margin: 0 auto;
+}

@@ -6,6 +6,7 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { MdDeleteForever } from "react-icons/md";
 import cartIcon from './assets/icons8-empty-cart.gif';
 import { NavLink } from 'react-router-dom'
+import { IoArrowBackCircleSharp } from "react-icons/io5";
 import './Cart.css';
 
 function Cart() {
@@ -15,7 +16,10 @@ function Cart() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState();
-  
+  const [discount, setDiscount] = useState(0);
+  const [coupon, setCoupon] = useState('');
+  const [notes, setNotes] = useState('');
+  const [instruction, setInstruction] = useState('')
 
 
 
@@ -124,6 +128,13 @@ function Cart() {
     e.preventDefault();
   };
 
+  function handleNotes(e){
+    setNotes(e.target.value);
+  }
+
+  function handleInstructions(e){
+    setInstruction(e.target.value)
+  }
 
   return (
     <div>
@@ -146,7 +157,7 @@ function Cart() {
           <CiDeliveryTruck color="#fa4a0c" /> Free Delivery
          </span>
         <span style={{marginLeft:"8px"}}>
-          <IoIosTimer color="red" /> 15-20 mins
+          <IoIosTimer color="red" /> 15-30 mins
         </span>
               <p className='cart-price'>₹{item.price}</p>
             </div>
@@ -158,6 +169,16 @@ function Cart() {
             </div>
           </div>
         ))}
+        <div className={(cart.length>0)?"notes":"no-notes"}>
+          <div className='chef-notes'>
+            <h3>Note To Chef:</h3>
+            <textarea placeholder='Any special requests for our chef?' onChange={handleNotes} value={notes}/>
+          </div>
+          <div className='delivery-notes'>
+            <h3>Note To Delivery Team:</h3>
+            <textarea placeholder='Any specific instructions for the delivery team?' onChange={handleInstructions} value={instruction}/>
+          </div>
+        </div>
         <div className={(cart.length>0)?"total":"no-total"}>
           <img src={cartIcon}></img> Total: <span className='rupee-symbol'>₹</span>{calculateTotal()}.00
         </div>
@@ -171,20 +192,46 @@ function Cart() {
         </div>
         </div>
         <div className={toggleWindow?"checkout-modal":"hide-checkout"}>
-          <span onClick={setWindowState} className='close-window'>X</span>
-          <h1>Checkout Page</h1><hr/><br/>
+          <span onClick={setWindowState} className='close-window'><IoArrowBackCircleSharp style={{width:"35px", height:"auto", cursor:"pointer"}} color=" #fff" /></span>
+          <h1>Checkout Page</h1>
+          <div className='checkout-page'>
+            <div className='checkout-animation'>
+            <video loop autoPlay>
+              <source
+                src="https://cdn.dribbble.com/users/2874478/screenshots/15675229/media/3d60f9c652584e5ad0b637ec3db2f2fa.mp4"
+                type="video/mp4"
+              />
+              <source src="movie.ogg" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+            </div>
+          
           <div className='address-details'>
             <h2>Enter Your Details</h2>
-            <input onChange={(e)=>setName(e.target.value)} type='text' required placeholder='Name'></input>
-            <input onChange={(e)=>setAddress(e.target.value)} type='text' required placeholder='Enter Address'></input>
+            <div className='small-input-container'>
+            <input className='small-input' onChange={(e)=>setName(e.target.value)} type='text' required placeholder='Name'></input>
+            <input className='small-input' onChange={(e)=>setAddress(e.target.value)} type='text' required placeholder='Enter Address'></input>
+            </div>
             <input  type='text' placeholder='Enter Building No. and Street Name (Optional)'></input>
-            <input onChange={(e)=>setPincode(e.target.value)} type='number' required placeholder='Enter Pincode'></input>
+            <div className='small-input-container'>
+            <input className='small-input' onChange={(e)=>setPincode(e.target.value)} type='number' required placeholder='Enter Pincode'></input>
+            <input className='small-input' onChange={(e)=>setMobile(e.target.value)}type='number' required placeholder='Enter Mobile Number'></input>
+            </div>
             <input type='text'  placeholder='Enter Landmark (Optional)'></input>
-            <input onChange={(e)=>setMobile(e.target.value)}type='number' required placeholder='Enter Mobile Number'></input>
+          </div>
           </div>
           <div className='checkout-payment'>
-          <h3>Total Amount: <span className='rupee-symbol'>₹</span>{calculateTotal()}.00</h3>
+            <div className='invoice'>
+            <p>Amount: <span className='rupee-symbol'>₹</span>{calculateTotal()}.00 <span className='tax-span'>(tax-included)</span></p>
+            <hr/>
+            <p>Discount:  {discount}% OFF</p>
+            <hr/>
+          <h3>Net Amount: <span className='rupee-symbol'>₹</span>{calculateTotal()}.00</h3>
+          </div>
+          <div className='invoice-action'>
+            <input value={coupon} onChange={(e)=>setCoupon(e.target.value)} type='text' placeholder='APPLY COUPON CODE'></input>
           <button onClick={paymentHandler}>Pay</button>
+          </div>
           </div>
         </div>
       </div>
